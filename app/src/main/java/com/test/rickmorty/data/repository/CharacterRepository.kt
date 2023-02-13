@@ -8,5 +8,5 @@ interface CharacterRepository {
      * @param page page of list
      * @return list of characters from given page
      */
-    fun getAllCharacters(page: Int): List<Character>
+    suspend fun getAllCharacters(page: Int): Result<List<Character>>
 }
