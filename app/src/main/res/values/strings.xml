@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RickMorty</string>
+    <string name="empty_list_message">No characters found</string>
 </resources>
