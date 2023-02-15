@@ -3,7 +3,7 @@ package com.test.rickmorty
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.test.rickmorty.databinding.ActivityMainBinding
-import com.test.rickmorty.ui.HomeFragment
+import com.test.rickmorty.ui.home.HomeFragment
 
 class MainActivity : AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package com.test.rickmorty.ui
+package com.test.rickmorty.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
