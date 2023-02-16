@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.test.rickmorty.R
@@ -52,6 +53,22 @@ class CharacterDetailFragment : BaseFragment() {
         viewModel.character.observe(viewLifecycleOwner) { character ->
             populateUI(character)
         }
+
+        viewModel.episodes.observe(viewLifecycleOwner) { episodes ->
+            binding.llDetailEpisodeContainer.removeAllViews()
+
+            if (!episodes.isNullOrEmpty()) {
+                episodes.forEach { ep ->
+                    val epView = EpisodeSnapshotView(requireContext())
+                    epView.init(ep)
+                    binding.llDetailEpisodeContainer.addView(epView)
+                }
+            } else {
+                val msgView = TextView(requireContext())
+                msgView.text = getString(R.string.empty_episode_msg)
+                binding.llDetailEpisodeContainer.addView(msgView)
+            }
+        }
     }
 
     private fun populateUI(character: Character) {
@@ -65,7 +82,6 @@ class CharacterDetailFragment : BaseFragment() {
         binding.tvDetailGender.text = character.gender
         binding.tvDetailOrigin.text = character.originData.name
         binding.tvDetailLocation.text = character.locationData.name
-        binding.tvDetailEpisode.text = character.episodeUrls.toString()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

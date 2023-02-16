@@ -136,13 +136,19 @@
                 android:layout_marginTop="8dp"
                 android:text="Episode" />
 
-            <TextView
-                android:id="@+id/tv_detail_episode"
-                style="@style/Body"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/ll_detail_episode_container"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                tools:text="Episode" />
+                android:orientation="vertical">
+
+                <ProgressBar
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="8dp" />
+
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
