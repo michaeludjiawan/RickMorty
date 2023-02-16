@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.test.rickmorty.R
 import com.test.rickmorty.databinding.FragmentHomeBinding
 import com.test.rickmorty.ui.common.BaseFragment
+import com.test.rickmorty.ui.detail.CharacterDetailFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : BaseFragment() {
@@ -34,6 +35,13 @@ class HomeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initToolbar(getString(R.string.toolbar_title_home))
+
+        initObservers()
+        initRecyclerView()
+    }
+
+    private fun initObservers() {
         viewModel.characters.observe(viewLifecycleOwner) { characters ->
             if (!characters.isNullOrEmpty()) {
                 characterAdapter.addItems(characters)
@@ -45,12 +53,12 @@ class HomeFragment : BaseFragment() {
         viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             binding.pbHomeLoading.isVisible = isLoading
         }
-
-        initRecyclerView()
     }
 
     private fun initRecyclerView() {
-        characterAdapter = CharacterAdapter(Glide.with(this))
+        characterAdapter = CharacterAdapter(Glide.with(this)) {
+            findNavController().navigateToPage(CharacterDetailFragment.newInstance(it))
+        }
 
         binding.rvCharacterList.apply {
             setHasFixedSize(true)

@@ -8,7 +8,11 @@ import com.test.rickmorty.R
 import com.test.rickmorty.data.model.Character
 import com.test.rickmorty.databinding.ItemCharacterBinding
 
-class CharacterAdapter(private val rm: RequestManager) : RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
+class CharacterAdapter(
+    private val rm: RequestManager,
+    private val onItemClick: (Character) -> Unit
+) :
+    RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
 
     private var items = arrayListOf<Character>()
 
@@ -41,6 +45,10 @@ class CharacterAdapter(private val rm: RequestManager) : RecyclerView.Adapter<Ch
             binding.tvCharacterName.text = item.name
             binding.tvCharacterSpecies.text = item.species
             binding.tvCharacterStatus.text = "Status: ${item.status.uppercase()}"
+
+            binding.cvCharacterItemContainer.setOnClickListener {
+                onItemClick.invoke(item)
+            }
         }
     }
 
