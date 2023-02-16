@@ -65,8 +65,36 @@ class CharacterDetailFragment : BaseFragment() {
                 }
             } else {
                 val msgView = TextView(requireContext())
-                msgView.text = getString(R.string.empty_episode_msg)
+                msgView.text = getString(R.string.empty_data_msg)
                 binding.llDetailEpisodeContainer.addView(msgView)
+            }
+        }
+
+        viewModel.origin.observe(viewLifecycleOwner) { origin ->
+            binding.llDetailOriginContainer.removeAllViews()
+
+            if (origin != null) {
+                val locView = LocationSnapshotView(requireContext())
+                locView.init(origin)
+                binding.llDetailOriginContainer.addView(locView)
+            } else {
+                val msgView = TextView(requireContext())
+                msgView.text = getString(R.string.empty_data_msg)
+                binding.llDetailOriginContainer.addView(msgView)
+            }
+        }
+
+        viewModel.location.observe(viewLifecycleOwner) { location ->
+            binding.llDetailLocationContainer.removeAllViews()
+
+            if (location != null) {
+                val locView = LocationSnapshotView(requireContext())
+                locView.init(location)
+                binding.llDetailLocationContainer.addView(locView)
+            } else {
+                val msgView = TextView(requireContext())
+                msgView.text = getString(R.string.empty_data_msg)
+                binding.llDetailLocationContainer.addView(msgView)
             }
         }
     }
@@ -80,8 +108,6 @@ class CharacterDetailFragment : BaseFragment() {
         binding.tvDetailSpecies.text = character.species
         binding.tvDetailStatus.text = character.status
         binding.tvDetailGender.text = character.gender
-        binding.tvDetailOrigin.text = character.originData.name
-        binding.tvDetailLocation.text = character.locationData.name
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -3,5 +3,5 @@
     <string name="empty_list_message">No characters found</string>
     <string name="toolbar_title_home">Home</string>
     <string name="toolbar_title_detail">Detail</string>
-    <string name="empty_episode_msg">No episode found.</string>
+    <string name="empty_data_msg">No data found.</string>
 </resources>
