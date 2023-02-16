@@ -1,11 +1,13 @@
 package com.test.rickmorty
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.test.rickmorty.databinding.ActivityMainBinding
+import com.test.rickmorty.ui.common.BaseActivity
 import com.test.rickmorty.ui.home.HomeFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
+
+    override fun getParentLayoutId(): Int = R.id.fl_main_container
 
     private lateinit var binding: ActivityMainBinding
 
@@ -15,9 +17,6 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fl_main_container, HomeFragment())
-            .addToBackStack(null)
-            .commit()
+        navigateToPage(HomeFragment(), false)
     }
 }
