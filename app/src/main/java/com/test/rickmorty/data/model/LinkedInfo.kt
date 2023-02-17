@@ -6,6 +6,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class LinkedInfo(
-    @SerializedName("name") val name: String,
-    @SerializedName("url") val url: String
+    @SerializedName("name") val name: String = "",
+    @SerializedName("url") val url: String = ""
 ): Parcelable
