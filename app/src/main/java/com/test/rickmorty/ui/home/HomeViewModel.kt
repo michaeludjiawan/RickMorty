@@ -19,21 +19,21 @@ class HomeViewModel(
     val isLoading: LiveData<Boolean> = mutableIsLoading
 
     init {
-        viewModelScope.launch {
-            getAllCharacters()
-        }
+        getAllCharacters()
     }
 
-    private suspend fun getAllCharacters() {
+    private fun getAllCharacters() {
         mutableIsLoading.value = true
 
-        val result = characterRepository.getAllCharacters(1)
-        if (result.isSuccess) {
-            mutableCharacters.value = result.getOrNull().orEmpty()
-        } else {
+        viewModelScope.launch {
+            val result = characterRepository.getAllCharacters(1)
+            if (result.isSuccess) {
+                mutableCharacters.value = result.getOrNull().orEmpty()
+            } else {
 
+            }
+
+            mutableIsLoading.value = false
         }
-
-        mutableIsLoading.value = false
     }
 }
