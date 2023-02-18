@@ -21,11 +21,11 @@ class CharacterDetailViewModel(
     private val mutableEpisodes: MutableLiveData<List<Episode>> = MutableLiveData()
     val episodes: LiveData<List<Episode>> = mutableEpisodes
 
-    private val mutableLocation: MutableLiveData<Location> = MutableLiveData()
-    val location: LiveData<Location> = mutableLocation
+    private val mutableLocation: MutableLiveData<Location?> = MutableLiveData()
+    val location: LiveData<Location?> = mutableLocation
 
-    private val mutableOrigin: MutableLiveData<Location> = MutableLiveData()
-    val origin: LiveData<Location> = mutableOrigin
+    private val mutableOrigin: MutableLiveData<Location?> = MutableLiveData()
+    val origin: LiveData<Location?> = mutableOrigin
 
     private var originId = -1
     private var locationId = -1
@@ -68,7 +68,7 @@ class CharacterDetailViewModel(
         if (result.isSuccess) {
             mutableEpisodes.value = result.getOrNull().orEmpty()
         } else {
-
+            mutableEpisodes.value = emptyList()
         }
     }
 
@@ -79,7 +79,8 @@ class CharacterDetailViewModel(
             mutableOrigin.value = result.getOrNull().orEmpty().find { it.id == originId }
             mutableLocation.value = result.getOrNull().orEmpty().find { it.id == locationId }
         } else {
-
+            mutableOrigin.value = null
+            mutableLocation.value = null
         }
     }
 }

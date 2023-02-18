@@ -30,7 +30,7 @@ class HomeViewModel(
             if (result.isSuccess) {
                 mutableCharacters.value = result.getOrNull().orEmpty()
             } else {
-
+                mutableCharacters.value = listOf()
             }
 
             mutableIsLoading.value = false
