@@ -66,14 +66,14 @@ class CharacterDetailViewModelTest {
     fun setData_getOrigin_matchValues() = runTest {
         viewModel.setData(testCharacter)
 
-        assert(viewModel.origin.awaitNextValue().id == testOrigin.id)
+        assert(viewModel.origin.awaitNextValue()?.id == testOrigin.id)
     }
 
     @Test
     fun setData_getLocation_matchValues() = runTest {
         viewModel.setData(testCharacter)
 
-        assert(viewModel.location.awaitNextValue().id == testLocation.id)
+        assert(viewModel.location.awaitNextValue()?.id == testLocation.id)
     }
 
     @Test
